@@ -62,13 +62,17 @@ export default function Login() {
       } catch (error) {
         console.log(error);
         if (error instanceof FirebaseError) {
-          if (error.code.toLocaleLowerCase() === "auth/email-already-in-use") {
-            setErrorMessage("Usuário já cadastrado!");
-          } else {
-            setErrorMessage("Erro desconhecido");
+          console.error(error);
+          if (error.code.toLowerCase() === "auth/email-already-in-use") {
+            setErrorMessage("Usuário não cadastrado!");
+          } else if (error.code.toLowerCase() === "auth/weak-password") {
+            setErrorMessage("A senha deve conter no mínimo 6 caracteres!");
           }
-          onOpen();
+        } else {
+          setErrorMessage("Erro desconhecido");
         }
+
+        onOpen();
       }
     },
     validationSchema,
