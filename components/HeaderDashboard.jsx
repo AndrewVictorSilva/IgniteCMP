@@ -17,7 +17,7 @@ export function HeaderDashboard() {
         minWidth="max-content"
         alignItems="center"
         gap="2"
-        bg="gray.200"
+        style={{background: "#F2F4FA"}}
       >
         <Box p="6" >
           <Heading size="md" >Projeto CMP</Heading>
